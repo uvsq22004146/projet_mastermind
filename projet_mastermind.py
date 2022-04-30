@@ -136,7 +136,7 @@ def validation_du_code():
 def choix_type_partie(valeur):
     global code_secret
     #Suppresion de l'ancien canvas
-    #Si on choisit la partie à 2 utilisateurs
+    #Si on choisit la partie à 2 utilisateur
     if valeur == 1:
 
         showinfo(title=" MASTERMIND'S RULES", message="Bienvenue sur le jeu Mastermind le but du jeu est que le JOUEUR 2 trouve la combinaison secrète que le JOUEUR 1 a entré en premier lieu "
