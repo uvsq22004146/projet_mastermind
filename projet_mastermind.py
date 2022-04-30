@@ -13,7 +13,7 @@ def placer_pion(event):
     if event.y > 600 :
         '''placement d'un pion de la combinaison secrète'''
         for i in range(4):
-            if i*600 < event.x < (i+1)*600:
+            if i*l_case < event.x < (i+1)*l_case:
                 if len(comb_secrète) < 4:
                     couleur = input("Placer un pion")
                     pion = plateau.create_oval((i*l_case + 10, HAUTEUR-l_case + 10), 
