@@ -126,9 +126,22 @@ def pions_mal_places():
 
 #Fonction qui verrouille le code du Joueur 1 et qui fait passer la main au Joueur 2
 def validation_du_code():
-    showinfo(title=" THE GAME BEGIN",message=" Le Joueur 1 a validé la combinaison de son code secret! C'est au tour du joueur 2 de faire son entrée et d'essayer de trouver cette combinaison.")
-    for c in racine.winfo_children():
-        c.destroy()
+    if len(code_secret) < 4:
+        showinfo(title="NOT COMPLETE", message="Votre code secret n'est pas complet, veuillez saisir quatres couleurs pour votre code")
+    else:
+        showinfo(title="THE GAME BEGIN",message=" Le Joueur 1 a validé la combinaison de son code secret!"
+                                                " C'est au tour du joueur 2 de faire son entrée et d'essayer"
+                                                " de trouver cette combinaison.")
+
+        for c in racine.winfo_children():
+            c.destroy()
+        racine.geometry("1250x630")
+        canvas = tk.Canvas(racine, height=630, width=1250)
+        canvas.grid()
+        zonejaune= canvas.create_oval(1240,5,1100,120, fill="yellow", outline="yellow")
+        zonerouge = canvas.create_oval(1240,125,1100,240, fill="red", outline="red")
+        zonevert = canvas.create_oval(1240,245,1100,360, fill="green", outline="green")
+        zonebleue = canvas.create_oval(1240,365,1100,480,fill="blue", outline="blue")
 
 
 
