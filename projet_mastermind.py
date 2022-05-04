@@ -68,7 +68,7 @@ button_pressed = True
 
 #Cette fonction génère aléatoirement un code secret
 def aletoire_code_secret() :
-    list_colors = ["rouge", "vert", "jaune", "bleu"]
+    list_colors = ["yellow", "red", "green", "blue"]
     while len(code_secret) < 4:
         code_secret.append(random.choice(list_colors))
         print(code_secret)
@@ -142,6 +142,15 @@ def validation_du_code():
         zonerouge = canvas.create_oval(1240,125,1100,240, fill="red", outline="red")
         zonevert = canvas.create_oval(1240,245,1100,360, fill="green", outline="green")
         zonebleue = canvas.create_oval(1240,365,1100,480,fill="blue", outline="blue")
+
+
+def placer_pion(event):
+    list_colors = ["yellow", "red", "green", "blue"]
+    if event.x > 1100 :
+            for i in range(3):
+                if 5 + 120*i < event.y < 5 + 120*(i+1):
+                    color = list_colors[i]
+                    pion = canvas.create_oval(10, 5+(120)*i, 130, 125+(120)*i, fill=color)
 
 
 
@@ -239,6 +248,8 @@ bouton_partie_2 = tk.Button(racine, text="Mode 1 joueur",font=("Broadway","20"),
 boutoncouleur = tk.Button(racine, text = "Ok", command=partial(saisi_code_secret, code_secret))
 bouton_valider = tk.Button(racine, text= "Valider votre combinaison", command= validation_du_code)
 bouton_annuler = tk.Button(racine, text="Annuler", command=annuler_code)
+
+canvas.bind("<Button-1>", placer_pion)
 
 #LANCEMENT DE LA FENETRE
 racine.mainloop()
