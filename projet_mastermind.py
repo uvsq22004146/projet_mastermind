@@ -157,7 +157,6 @@ def placer_pion(event):
                     code_essai.append(color)
                     pion = canvas.create_oval(10+120*(nb_essai), 5+120*(nb_pions_places), 
                                                 130*(nb_essai), 125+120*(nb_pions_places+1), fill=color)
-                    print(code_essai)
 
 
 
