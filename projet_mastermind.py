@@ -55,6 +55,8 @@ import random
 from functools import partial
 from tkinter.messagebox import showerror, showinfo
 
+from matplotlib import colors
+
 #CREATION DES VARIABLES GLOBALES
 
 
@@ -145,12 +147,17 @@ def validation_du_code():
 
 
 def placer_pion(event):
+    global list_colors
     list_colors = ["yellow", "red", "green", "blue"]
+    nb_pions_places = len(code_essai)
     if event.x > 1100 :
             for i in range(3):
                 if 5 + 120*i < event.y < 5 + 120*(i+1):
                     color = list_colors[i]
-                    pion = canvas.create_oval(10, 5+(120)*i, 130, 125+(120)*i, fill=color)
+                    code_essai.append(color)
+                    pion = canvas.create_oval(10+120*(nb_essai), 5+120*(nb_pions_places), 
+                                                130*(nb_essai), 125+120*(nb_pions_places+1), fill=color)
+                    print(code_essai)
 
 
 
@@ -249,7 +256,7 @@ boutoncouleur = tk.Button(racine, text = "Ok", command=partial(saisi_code_secret
 bouton_valider = tk.Button(racine, text= "Valider votre combinaison", command= validation_du_code)
 bouton_annuler = tk.Button(racine, text="Annuler", command=annuler_code)
 
-canvas.bind("<Button-1>", placer_pion)
+racine.bind("<Button-1>", placer_pion)
 
 #LANCEMENT DE LA FENETRE
 racine.mainloop()
