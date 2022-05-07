@@ -100,6 +100,7 @@ def verification_code():
 
 #Fontion qui renvoie le nombre de pions bien placés
 def pions_bien_places():
+    global correct_colors
     correct_colors = 0
     for couleur in code_secret:
         for couleur_essai in code_essai:
@@ -116,6 +117,7 @@ Si les positions sont différentes alors le pion est mal placé
 """
 #Fonction qui permet de savoir le nombre de pions mal placé
 def pions_mal_places():
+    global incorrects_pions
     incorrects_pions = 0
     for idx,couleur_essai in code_essai:
         if couleur_essai in code_secret:
@@ -147,7 +149,7 @@ def validation_du_code():
 
 
 def placer_pion(event):
-    global list_colors
+    global list_colors, code_essai
     list_colors = ["yellow", "red", "green", "blue"]
     nb_pions_places = len(code_essai)
     if event.x > 1100 :
@@ -157,7 +159,13 @@ def placer_pion(event):
                     code_essai.append(color)
                     pion = canvas.create_oval(10+120*(nb_essai), 5+120*(nb_pions_places), 
                                                 130*(nb_essai), 125+120*(nb_pions_places+1), fill=color)
+                    print(code_essai)
 
+def affichage_nb_pions_bien_mal_places():
+    for i in range(incorrects_pions):
+        pion_rouge = canvas.create_oval(120*(nb_essai), 630-20*i, 120*(nb_essai)+20, 630)
+    for i in range(correct_colors):
+        pion_blanc = canvas.create_oval(120*(nb_essai)+40, 630-20*i, 120*(nb_essai)+60, 630)
 
 
 #Cette fonction permet de choisir entre une partie à 2 ou une partie à 1
@@ -259,9 +267,3 @@ racine.bind("<Button-1>", placer_pion)
 
 #LANCEMENT DE LA FENETRE
 racine.mainloop()
-
-
-
-
-
-
