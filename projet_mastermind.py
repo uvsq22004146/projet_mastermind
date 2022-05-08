@@ -78,6 +78,7 @@ def aletoire_code_secret() :
 #Cette fonction permet au joueur 2 de saisir un code et vérifie si celui ci correspond au code secret
 def essai_joueur():
     global nb_essai
+    placer_pion()
     nb_essai += 1
     if verification_code():
         return True
@@ -142,24 +143,16 @@ def validation_du_code():
         racine.geometry("1250x630")
         canvas = tk.Canvas(racine, height=630, width=1250)
         canvas.grid()
-        zonejaune= canvas.create_oval(1240,5,1100,120, fill="yellow", outline="yellow")
-        zonerouge = canvas.create_oval(1240,125,1100,240, fill="red", outline="red")
-        zonevert = canvas.create_oval(1240,245,1100,360, fill="green", outline="green")
-        zonebleue = canvas.create_oval(1240,365,1100,480,fill="blue", outline="blue")
 
 
-def placer_pion(event):
+def placer_pion():
     global list_colors, code_essai
-    list_colors = ["yellow", "red", "green", "blue"]
     nb_pions_places = len(code_essai)
-    if event.x > 1100 :
-            for i in range(3):
-                if 5 + 120*i < event.y < 5 + 120*(i+1):
-                    color = list_colors[i]
-                    code_essai.append(color)
-                    pion = canvas.create_oval(10+120*(nb_essai), 5+120*(nb_pions_places), 
-                                                130*(nb_essai), 125+120*(nb_pions_places+1), fill=color)
-                    print(code_essai)
+    for i in range(3):
+        color = input("Entrer une couleur de pion à placer")
+        pion = canvas.create_oval(5+120*nb_essai-1, 5+120*nb_pions_places-1, 5+120*nb_essai, 5+120*nb_pions_places)
+        code_essai.append(color)
+    
 
 def affichage_nb_pions_bien_mal_places():
     for i in range(incorrects_pions):
